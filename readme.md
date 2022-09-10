@@ -15,7 +15,7 @@ The control keys are:
 Snake game step by step implementation:
 1. Display the board with snake inside
 2. Display an apple on the board in random place
-3. Snake control using keyboard
+3. Snake control using keyboard (https://www.geeksforgeeks.org/python-moving-an-object-in-pygame/)
 4. Writing the current score in the board
 5. Detection of situation on board (collision with the wall or itself)
 6. Lengthening (growing longer), recreating food in random place

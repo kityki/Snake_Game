@@ -1,0 +1,19 @@
+WIDTH = 400
+HEIGHT = 300
+
+RED = (255, 0, 0)
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+GREEN = (0, 128, 0)
+BLUE = (0, 0, 255)
+
+BLOCK_SIZE = 20
+
+# Colums number width in cells
+COLUMS_NUM = WIDTH // BLOCK_SIZE
+ROWS_NUM = HEIGHT // BLOCK_SIZE
+
+WIDTH_CENTER = COLUMS_NUM // 2 * BLOCK_SIZE
+HEIGHT_CENTER = ROWS_NUM // 2 * BLOCK_SIZE
+
+# block size
