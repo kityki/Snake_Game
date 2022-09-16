@@ -26,6 +26,7 @@ class Snake(Cube):
     def __init__(self, position, color):
         super().__init__(position, color)
         self.body = [position]
+        self.direction_x_y = [0, 0]
 
     def move(self):
 
@@ -33,18 +34,21 @@ class Snake(Cube):
 
         if keys[pygame.K_LEFT]:
             self.position[0] -= BLOCK_SIZE
+            self.direction_x_y[0] = -1
 
         if keys[pygame.K_RIGHT]:
             self.position[0] += BLOCK_SIZE
+            self.direction_x_y[0] = 1
 
         if keys[pygame.K_UP]:
             self.position[1] -= BLOCK_SIZE
+            self.direction_x_y[1] = -1
 
         if keys[pygame.K_DOWN]:
             self.position[1] += BLOCK_SIZE
+            self.direction_x_y[1] = 1
 
-        #print("new position ", self.position)
-        #print("body ", self.body)
+
 
     def draw(self, window):
         for cube in self.body:
@@ -53,7 +57,11 @@ class Snake(Cube):
             print(cube)
 
     def add_body(self):
-        self.body.append()
+
+        tail = self.body[-1]
+        self.body.append([tail[0] - self.direction_x_y[0] * BLOCK_SIZE, tail[1] - self.direction_x_y[1] * BLOCK_SIZE])
+
+
 
 
 # modify func add_body
