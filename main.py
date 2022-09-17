@@ -47,6 +47,9 @@ def main():
             apple_instance.change_position()
             snake_instance.add_body()
 
+        if snake_instance.is_collision():
+            pygame.quit()
+            sys.exit()
 
         # Drawing Rectangle
         #pygame.draw.rect(screen, RED, pygame.Rect(WIDTH_CENTER, HEIGHT_CENTER, BLOCK_SIZE, BLOCK_SIZE))
@@ -57,7 +60,9 @@ def main():
         apple_instance.draw(screen)
         snake_instance.move()
         pygame.display.update()
-        clock.tick(7)
+        clock.tick(4)
+
+
 
 
 
