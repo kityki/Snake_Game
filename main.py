@@ -64,7 +64,7 @@ def main():
         screen.fill(BLACK)
         drawGrid(screen)
         surface = draw_text("Score: 0")
-        screen.blit(surface, (100, 80))
+        screen.blit(surface, (450, 380))
         snake_instance.draw(screen)
         apple_instance.draw(screen)
         snake_instance.move()
