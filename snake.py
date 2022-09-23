@@ -19,8 +19,8 @@ class Apple(Cube):
         super().__init__(self.position, color)
 
     def change_position(self):
-        random_width = random.randint(0, COLUMS_NUM) * BLOCK_SIZE
-        random_height = random.randint(0, ROWS_NUM) * BLOCK_SIZE
+        random_width = random.randint(0, COLUMS_NUM - 1) * BLOCK_SIZE
+        random_height = random.randint(0, ROWS_NUM - 1) * BLOCK_SIZE
         self.position = [random_width, random_height]
 
 
@@ -29,7 +29,6 @@ class Snake(Cube):
         super().__init__(position, color)
         self.body = [self.position]
         self.direction_x_y = [0, 0]
-        self.counter = 0
         self.head = self.body[0]
 
     def move(self):
@@ -48,15 +47,10 @@ class Snake(Cube):
         if keys[pygame.K_DOWN]:
             self.direction_x_y = DOWN_DIR
 
-        self.position[0] += self.direction_x_y[0] * BLOCK_SIZE
-        self.position[1] += self.direction_x_y[1] * BLOCK_SIZE
+        self.body.insert(0, [self.body[0][0] + self.direction_x_y[0] * BLOCK_SIZE,
+                             self.body[0][1] + self.direction_x_y[1] * BLOCK_SIZE])
 
-        self.body.insert(0, self.position)
         del self.body[-1]
-        self.counter += 1
-        if self.counter == 10:
-            print(self.body)
-            self.counter = 0
         self.head = self.body[0]
 
     def draw(self, window):
@@ -71,7 +65,17 @@ class Snake(Cube):
 
     def is_collision(self):
         """"this function returns True if snake meets the wall, and returns False otherwise"""
+
         if self.head[0] >= WIDTH or self.head[0] < 0 or self.head[1] >= HEIGHT or self.head[1] < 0:
             return True
         else:
             return False
+
+    def is_body_collision(self):
+        """this function returns True if snake meets the it's body, and returns False otherwise"""
+
+        if self.head in self.body[1:]:
+            return True
+        else:
+            return False
+

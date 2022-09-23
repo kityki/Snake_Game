@@ -13,10 +13,11 @@ def drawGrid(screen):
             rect = pygame.Rect(x, y, BLOCK_SIZE, BLOCK_SIZE)
             pygame.draw.rect(screen, WHITE, rect, 1)
 
-# font_name = pygame.font("arial")
-# def draw_text(surface, text, x, y):
-#     font = pygame.font.Font(font_name, size=10)
-#     text_surface = font.render(text, True, WHITE)
+
+def draw_text(text):
+    font = pygame.font.SysFont("arial", size=10)
+    text_surface = font.render(text, True, BLUE, RED)
+    return text_surface
 
 
 def main():
@@ -28,6 +29,8 @@ def main():
     clock = pygame.time.Clock()
 
     drawGrid(screen)
+    pygame.font.init()
+    surface = draw_text("Score: 0")
 
     snake_instance = Snake([WIDTH_CENTER, HEIGHT_CENTER], RED)
     snake_instance.draw(screen)
@@ -51,16 +54,22 @@ def main():
             pygame.quit()
             sys.exit()
 
+        if snake_instance.is_body_collision():
+            pygame.quit()
+            sys.exit()
+
         # Drawing Rectangle
         #pygame.draw.rect(screen, RED, pygame.Rect(WIDTH_CENTER, HEIGHT_CENTER, BLOCK_SIZE, BLOCK_SIZE))
         pygame.display.flip()
         screen.fill(BLACK)
         drawGrid(screen)
+        surface = draw_text("Score: 0")
+        screen.blit(surface, (100, 80))
         snake_instance.draw(screen)
         apple_instance.draw(screen)
         snake_instance.move()
         pygame.display.update()
-        clock.tick(4)
+        clock.tick(6)
 
 
 
