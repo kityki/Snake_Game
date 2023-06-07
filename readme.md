@@ -1,4 +1,4 @@
-Snake game (using pygame library)
+# Snake game (using pygame library)
 
 In the snake game, the player uses the arrow keys to move its body around the board.
 When the snake eats an apple then it will grow. After eating the food the new apple
